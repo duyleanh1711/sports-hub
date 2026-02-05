@@ -1,0 +1,18 @@
+{
+  "menu": {
+    "profile": "Hồ sơ cá nhân",
+    "settings": "Cài đặt",
+    "theme": {
+      "label": "Giao diện",
+      "system": "Hệ thống",
+      "dark": "Tối",
+      "light": "Sáng"
+    },
+    "language": {
+      "label": "Ngôn ngữ",
+      "vi": "Tiếng Việt",
+      "en": "English"
+    },
+    "logout": "Đăng xuất"
+  }
+}

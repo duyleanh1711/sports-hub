@@ -1,35 +1,42 @@
-"use client"
+"use client";
 
-import { ProgressBar } from "react-aria-components"
-import { twMerge } from "tailwind-merge"
+import { ProgressBar } from "react-aria-components";
+import { twMerge } from "tailwind-merge";
 
 const Ring = ({ className, ...props }: React.SVGProps<SVGSVGElement>) => (
   <svg
     className={twMerge("size-4", className)}
-    {...props}
-    xmlns="http://www.w3.org/2000/svg"
-    width={16}
-    height={16}
-    fill="none"
     viewBox="0 0 24 24"
+    fill="none"
     aria-hidden="true"
+    {...props}
   >
-    <path
+    <circle
+      cx="12"
+      cy="12"
+      r="9"
       stroke="currentColor"
-      strokeOpacity="0.25"
-      strokeWidth="3.636"
-      d="M11.909 21a9.09 9.09 0 1 0 0-18.182 9.09 9.09 0 0 0 0 18.182Z"
+      strokeOpacity="0.2"
+      strokeWidth="1.6"
     />
     <path
-      fill="currentColor"
-      d="M4.636 11.91a7.273 7.273 0 0 1 7.273-7.274V1C5.885 1 1 5.885 1 11.91zm1.819 4.81a7.24 7.24 0 0 1-1.819-4.81H1c0 2.764 1.032 5.294 2.727 7.215z"
+      d="M12 3a9 9 0 0 1 9 9"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      className="origin-center animate-spin"
     />
   </svg>
-)
+);
 
 const Spin = ({ className, ...props }: React.SVGProps<SVGSVGElement>) => (
-  <svg className={twMerge("size-4", className)} viewBox="0 0 2400 2400" {...props}>
-    <g strokeWidth="200" strokeLinecap="round" fill="none">
+  <svg
+    className={twMerge("size-4", className)}
+    viewBox="0 0 2400 2400"
+    aria-hidden="true"
+    {...props}
+  >
+    <g strokeWidth="100" strokeLinecap="round" fill="none">
       <line x1="1200" y1="600" x2="1200" y2="100" />
       <line opacity="0.5" x1="1200" y1="2300" x2="1200" y2="1800" />
       <line opacity="0.917" x1="900" y1="680.4" x2="650" y2="247.4" />
@@ -44,39 +51,39 @@ const Spin = ({ className, ...props }: React.SVGProps<SVGSVGElement>) => (
       <line opacity="0.083" x1="1750" y1="247.4" x2="1500" y2="680.4" />
       <animateTransform
         attributeName="transform"
-        attributeType="XML"
         type="rotate"
-        keyTimes="0;0.08333;0.16667;0.25;0.33333;0.41667;0.5;0.58333;0.66667;0.75;0.83333;0.91667"
-        values="0 1199 1199;30 1199 1199;60 1199 1199;90 1199 1199;120 1199 1199;150 1199 1199;180 1199 1199;210 1199 1199;240 1199 1199;270 1199 1199;300 1199 1199;330 1199 1199"
-        dur="0.83333s"
-        begin="0.08333s"
+        values="0 1200 1200;30 1200 1200;60 1200 1200;90 1200 1200;120 1200 1200;150 1200 1200;180 1200 1200;210 1200 1200;240 1200 1200;270 1200 1200;300 1200 1200;330 1200 1200"
+        dur="0.8s"
         repeatCount="indefinite"
-        calcMode="discrete"
       />
     </g>
   </svg>
-)
+);
 
 const LOADERS = {
   ring: Ring,
   spin: Spin,
-}
+};
 
-const DEFAULT_SPINNER = "spin"
+const DEFAULT_SPINNER = "spin";
 
 export interface LoaderProps
-  extends Omit<React.ComponentPropsWithoutRef<"svg">, "display" | "opacity" | "intent"> {
-  variant?: keyof typeof LOADERS
-  percentage?: number
-  isIndeterminate?: boolean
-  formatOptions?: Intl.NumberFormatOptions
-  ref?: React.RefObject<SVGSVGElement>
-  "data-slot"?: string
+  extends Omit<
+    React.ComponentPropsWithoutRef<"svg">,
+    "display" | "opacity" | "intent"
+  > {
+  variant?: keyof typeof LOADERS;
+  percentage?: number;
+  isIndeterminate?: boolean;
+  formatOptions?: Intl.NumberFormatOptions;
+  ref?: React.RefObject<SVGSVGElement>;
+  "data-slot"?: string;
 }
 
 export function Loader({ isIndeterminate = true, ref, ...props }: LoaderProps) {
-  const { className, variant = DEFAULT_SPINNER, ...spinnerProps } = props
-  const LoaderPrimitive = LOADERS[variant in LOADERS ? variant : DEFAULT_SPINNER]
+  const { className, variant = DEFAULT_SPINNER, ...spinnerProps } = props;
+  const LoaderPrimitive =
+    LOADERS[variant in LOADERS ? variant : DEFAULT_SPINNER];
 
   return (
     <ProgressBar
@@ -87,15 +94,14 @@ export function Loader({ isIndeterminate = true, ref, ...props }: LoaderProps) {
     >
       <LoaderPrimitive
         role="presentation"
-        className={twMerge(
-          "size-4",
-          ["ring"].includes(variant) && "animate-spin",
-          variant === "spin" && "stroke-current",
-          className,
-        )}
         ref={ref}
         {...spinnerProps}
+        className={twMerge(
+          "size-4",
+          variant === "spin" && "stroke-current animate-spin",
+          className,
+        )}
       />
     </ProgressBar>
-  )
+  );
 }

@@ -1,0 +1,18 @@
+{
+  "menu": {
+    "profile": "Profile",
+    "settings": "Settings",
+    "theme": {
+      "label": "Theme",
+      "system": "System",
+      "dark": "Dark",
+      "light": "Light"
+    },
+    "language": {
+      "label": "Language",
+      "vi": "Vietnamese",
+      "en": "English"
+    },
+    "logout": "Log out"
+  }
+}

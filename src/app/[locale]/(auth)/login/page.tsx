@@ -1,10 +1,16 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+
+import { toast } from "sonner";
 import { useTranslations } from "next-intl";
 import { Form } from "react-aria-components";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, Controller } from "react-hook-form";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
+import { getCaptchaToken } from "@/lib/recaptcha";
+import { useLogin } from "@/react-query/mutation/auth";
 import { loginSchema, type LoginFormValues } from "@/schemas/auth/login";
 
 import {
@@ -28,15 +34,17 @@ import { Text, TextLink } from "@/components/ui/text";
 import { TextField } from "@/components/ui/text-field";
 import { Checkbox, CheckboxLabel } from "@/components/ui/checkbox";
 
+import { ThemeSwitcher } from "@/components/shared/theme-switcher";
 import { LanguageSwitcher } from "@/components/shared/language-switcher";
 
 export default function LoginPage() {
+  const router = useRouter();
   const t = useTranslations("auth.login");
 
   const {
     control,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors },
   } = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema(t)),
     mode: "onChange",
@@ -48,13 +56,42 @@ export default function LoginPage() {
     },
   });
 
-  const onSubmit = (data: LoginFormValues) => {
-    console.log(data);
+  const { mutate, isPending } = useLogin();
+  const { executeRecaptcha } = useGoogleReCaptcha();
+
+  const onSubmit = async (data: LoginFormValues) => {
+    const captcha_token = await getCaptchaToken(executeRecaptcha);
+
+    mutate(
+      {
+        email: data.email,
+        password: data.password,
+        captcha_token,
+      },
+      {
+        onSuccess: (user) => {
+          toast.success(t("toast.success"));
+          router.replace(user.is_superuser ? "/admin/dashboard" : "/");
+        },
+        // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+        onError: (error: any) => {
+          const rawCode = error?.response?.data?.code;
+          const code = rawCode?.replace("AUTH_", "")?.toLowerCase();
+
+          toast.error(
+            t(`toast.failed.${code}`, {
+              defaultValue: t("toast.failed.default"),
+            }),
+          );
+        },
+      },
+    );
   };
 
   return (
     <main className="flex min-h-dvh items-center justify-center p-6">
-      <div className="absolute right-4 top-4">
+      <div className="absolute right-4 top-4 flex items-center gap-2">
+        <ThemeSwitcher appearance="outline" shape="square" />
         <LanguageSwitcher />
       </div>
 
@@ -148,9 +185,13 @@ export default function LoginPage() {
             size="lg"
             type="submit"
             className="mt-6 w-full"
-            isDisabled={isSubmitting}
+            isDisabled={isPending}
           >
-            {isSubmitting ? <Loader variant="ring" /> : t("submit")}
+            {isPending ? (
+              <Loader variant="ring" className="size-5" />
+            ) : (
+              t("submit")
+            )}
           </Button>
 
           <div className="mt-4 text-center">

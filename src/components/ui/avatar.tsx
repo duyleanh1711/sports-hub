@@ -1,11 +1,11 @@
-import { twMerge } from "tailwind-merge"
+import { twMerge } from "tailwind-merge";
 
 export interface AvatarProps {
-  src?: string | null
-  initials?: string
-  alt?: string
-  className?: string
-  isSquare?: boolean
+  src?: string | null;
+  initials?: string;
+  alt?: string;
+  className?: string;
+  isSquare?: boolean;
   size?:
     | "xs"
     | "sm"
@@ -19,7 +19,7 @@ export interface AvatarProps {
     | "6xl"
     | "7xl"
     | "8xl"
-    | "9xl"
+    | "9xl";
 }
 
 export function Avatar({
@@ -57,6 +57,7 @@ export function Avatar({
       )}
     >
       {initials && (
+        // biome-ignore lint/a11y/noSvgWithoutTitle: <explanation>
         <svg
           className="size-full select-none fill-current p-[5%] font-md text-[48px] uppercase"
           viewBox="0 0 100 100"
@@ -75,7 +76,13 @@ export function Avatar({
           </text>
         </svg>
       )}
-      {src && <img className="size-full object-cover object-center" src={src} alt={alt} />}
+      {src && (
+        <img
+          className="size-full object-cover object-center"
+          src={src}
+          alt={alt}
+        />
+      )}
     </span>
-  )
+  );
 }

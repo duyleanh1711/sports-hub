@@ -5,6 +5,13 @@ import "../globals.css";
 import NextTopLoader from "nextjs-toploader";
 import { NextIntlClientProvider } from "next-intl";
 
+import { Toast } from "@/components/ui/toast";
+
+import AuthProvider from "@/components/providers/auth-provider";
+import QueryProvider from "@/components/providers/query-provider";
+import ThemeProvider from "@/components/providers/theme-provider";
+import RecaptchaProvider from "@/components/providers/recaptcha-provider";
+
 const manrope = Manrope({
   subsets: ["latin"],
   variable: "--font-manrope",
@@ -28,10 +35,19 @@ export default async function RootLayout({
   return (
     <html lang={locale} suppressHydrationWarning>
       <body className={`${manrope.variable} antialiased`}>
-        <NextIntlClientProvider>
-          <NextTopLoader />
-          {children}
-        </NextIntlClientProvider>
+        <QueryProvider>
+          <RecaptchaProvider>
+            <ThemeProvider>
+              <NextIntlClientProvider>
+                <AuthProvider>
+                  <Toast />
+                  <NextTopLoader />
+                  {children}
+                </AuthProvider>
+              </NextIntlClientProvider>
+            </ThemeProvider>
+          </RecaptchaProvider>
+        </QueryProvider>
       </body>
     </html>
   );
