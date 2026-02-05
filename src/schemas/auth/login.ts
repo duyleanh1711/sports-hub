@@ -1,17 +1,21 @@
 import { z } from "zod";
 
-export const loginSchema = z.object({
-  email: z.string().min(1, "Vui lòng nhập email").email("Email không hợp lệ"),
+export const loginSchema = (t: (key: string) => string) =>
+  z.object({
+    email: z
+      .string()
+      .min(1, t("validation.emailRequired"))
+      .email(t("validation.emailInvalid")),
 
-  password: z
-    .string()
-    .min(8, "Mật khẩu phải có ít nhất 8 ký tự")
-    .regex(/[a-z]/, "Mật khẩu phải chứa ít nhất 1 chữ thường")
-    .regex(/[A-Z]/, "Mật khẩu phải chứa ít nhất 1 chữ hoa")
-    .regex(/[0-9]/, "Mật khẩu phải chứa ít nhất 1 chữ số")
-    .regex(/[^a-zA-Z0-9]/, "Mật khẩu phải chứa ít nhất 1 ký tự đặc biệt"),
+    password: z
+      .string()
+      .min(8, t("validation.passwordMin"))
+      .regex(/[a-z]/, t("validation.passwordLowercase"))
+      .regex(/[A-Z]/, t("validation.passwordUppercase"))
+      .regex(/[0-9]/, t("validation.passwordNumber"))
+      .regex(/[^a-zA-Z0-9]/, t("validation.passwordSpecial")),
 
-  remember: z.boolean().optional(),
-});
+    remember: z.boolean().optional(),
+  });
 
-export type LoginFormValues = z.infer<typeof loginSchema>;
+export type LoginFormValues = z.infer<ReturnType<typeof loginSchema>>;

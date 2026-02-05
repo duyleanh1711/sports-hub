@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { Form } from "react-aria-components";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, Controller } from "react-hook-form";
@@ -27,13 +28,17 @@ import { Text, TextLink } from "@/components/ui/text";
 import { TextField } from "@/components/ui/text-field";
 import { Checkbox, CheckboxLabel } from "@/components/ui/checkbox";
 
+import { LanguageSwitcher } from "@/components/shared/language-switcher";
+
 export default function LoginPage() {
+  const t = useTranslations("auth.login");
+
   const {
     control,
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm<LoginFormValues>({
-    resolver: zodResolver(loginSchema),
+    resolver: zodResolver(loginSchema(t)),
     mode: "onChange",
     reValidateMode: "onChange",
     defaultValues: {
@@ -49,16 +54,17 @@ export default function LoginPage() {
 
   return (
     <main className="flex min-h-dvh items-center justify-center p-6">
-      <div className="w-full max-w-sm">
-        <h1 className="sr-only">Đăng nhập</h1>
+      <div className="absolute right-4 top-4">
+        <LanguageSwitcher />
+      </div>
 
+      <div className="w-full max-w-sm">
+        <h1 className="sr-only">{t("title")}</h1>
+
+        {/* Home */}
         <Tooltip delay={0}>
-          <TooltipTrigger aria-label="Về trang chủ">
-            <Link
-              href="/"
-              aria-label="Về trang chủ"
-              className="mb-3 inline-block"
-            >
+          <TooltipTrigger aria-label={t("home")}>
+            <Link href="/" className="mb-3 inline-block">
               <Avatar
                 isSquare
                 src="https://design.intentui.com/logo"
@@ -66,27 +72,25 @@ export default function LoginPage() {
               />
             </Link>
           </TooltipTrigger>
-          <TooltipContent>Về trang chủ</TooltipContent>
+          <TooltipContent>{t("home")}</TooltipContent>
         </Tooltip>
 
         <Form onSubmit={handleSubmit(onSubmit)}>
           <Fieldset>
-            <Legend className="text-xl/6">Đăng nhập</Legend>
+            <Legend className="text-xl/6">{t("title")}</Legend>
 
-            <Text>
-              Đăng nhập để dễ dàng tìm sân, chọn khung giờ và đặt lịch chơi.
-            </Text>
+            <Text>{t("description")}</Text>
 
             {/* Email */}
             <TextField isRequired isInvalid={!!errors.email}>
-              <Label>Email</Label>
+              <Label>{t("email")}</Label>
               <Controller
                 name="email"
                 control={control}
                 render={({ field }) => (
                   <Input
                     type="email"
-                    placeholder="Nhập địa chỉ email"
+                    placeholder={t("emailPlaceholder")}
                     value={field.value}
                     onChange={field.onChange}
                     onBlur={field.onBlur}
@@ -99,12 +103,12 @@ export default function LoginPage() {
             {/* Password */}
             <TextField isRequired isInvalid={!!errors.password}>
               <div className="mb-2 flex items-center justify-between">
-                <Label>Mật khẩu</Label>
+                <Label>{t("password")}</Label>
                 <TextLink
                   href="/forgot-password"
                   className="text-base/6 sm:text-sm/6"
                 >
-                  Quên mật khẩu?
+                  {t("forgot")}
                 </TextLink>
               </div>
 
@@ -114,7 +118,7 @@ export default function LoginPage() {
                 render={({ field }) => (
                   <Input
                     type="password"
-                    placeholder="Nhập mật khẩu"
+                    placeholder={t("passwordPlaceholder")}
                     value={field.value}
                     onChange={field.onChange}
                     onBlur={field.onBlur}
@@ -133,11 +137,8 @@ export default function LoginPage() {
               control={control}
               render={({ field }) => (
                 <Checkbox isSelected={field.value} onChange={field.onChange}>
-                  <CheckboxLabel>Ghi nhớ đăng nhập</CheckboxLabel>
-                  <Description>
-                    Giữ trạng thái đăng nhập trên thiết bị này để truy cập nhanh
-                    hơn lần sau.
-                  </Description>
+                  <CheckboxLabel>{t("remember")}</CheckboxLabel>
+                  <Description>{t("rememberDesc")}</Description>
                 </Checkbox>
               )}
             />
@@ -149,13 +150,13 @@ export default function LoginPage() {
             className="mt-6 w-full"
             isDisabled={isSubmitting}
           >
-            {isSubmitting ? <Loader variant="ring" /> : "Đăng nhập"}
+            {isSubmitting ? <Loader variant="ring" /> : t("submit")}
           </Button>
 
           <div className="mt-4 text-center">
             <Text>
-              Chưa có tài khoản?{" "}
-              <TextLink href="/register">Đăng ký ngay</TextLink>
+              {t("noAccount")}{" "}
+              <TextLink href="/register">{t("register")}</TextLink>
             </Text>
           </div>
         </Form>
