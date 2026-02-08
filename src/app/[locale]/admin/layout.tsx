@@ -6,6 +6,11 @@ import { usePathname, useRouter } from "next/navigation";
 import { useAuthStore } from "@/stores/auth";
 import { stripLocale } from "@/utils/strip-locale";
 
+import AppSidebar from "@/components/pages/admin/app-sidebar";
+import AppSidebarNav from "@/components/pages/admin/app-sidebar-nav";
+
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+
 import { FullScreenLoader } from "@/components/shared/full-screen-loader";
 
 export default function AdminLayout({
@@ -41,5 +46,13 @@ export default function AdminLayout({
     return <FullScreenLoader variant="ring" className="size-9 text-primary" />;
   }
 
-  return children;
+  return (
+    <SidebarProvider>
+      <AppSidebar collapsible="dock" />
+      <SidebarInset>
+        <AppSidebarNav />
+        <div className="px-4">{children}</div>
+      </SidebarInset>
+    </SidebarProvider>
+  );
 }

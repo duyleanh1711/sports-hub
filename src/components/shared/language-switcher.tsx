@@ -6,7 +6,8 @@ import { useLocale, useTranslations } from "next-intl";
 import { LanguageIcon } from "@heroicons/react/24/outline";
 
 import { Button } from "../ui/button";
-import { Menu, MenuItem, MenuLabel, MenuContent } from "@/components/ui/menu";
+import { Tooltip, TooltipContent } from "../ui/tooltip";
+import { Menu, MenuItem, MenuLabel, MenuContent } from "../ui/menu";
 
 export function LanguageSwitcher() {
   const locale = useLocale();
@@ -24,9 +25,14 @@ export function LanguageSwitcher() {
   return (
     <Menu>
       {/* Menu trigger */}
-      <Button size="sq-sm" intent="outline" aria-label="Switch language">
-        <LanguageIcon className="size-4" />
-      </Button>
+      <Tooltip delay={0}>
+        <Button size="sq-sm" intent="outline" aria-label={t("label")}>
+          <LanguageIcon className="size-4" />
+        </Button>
+
+        {/* Tooltip text */}
+        <TooltipContent>{t("label")}</TooltipContent>
+      </Tooltip>
 
       {/* Menu content */}
       <MenuContent>

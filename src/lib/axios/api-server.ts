@@ -1,12 +1,13 @@
-import axios from "axios";
 import { cookies } from "next/headers";
+
+import axios from "axios";
 
 export const apiServer = axios.create({
   baseURL: process.env.API_BASE_URL,
+  timeout: 10000,
   headers: {
     "Content-Type": "application/json",
   },
-  timeout: 10000,
 });
 
 apiServer.interceptors.request.use(async (config) => {

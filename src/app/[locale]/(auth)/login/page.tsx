@@ -9,6 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, Controller } from "react-hook-form";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
+import { useAuthStore } from "@/stores/auth";
 import { getCaptchaToken } from "@/lib/recaptcha";
 import { useLogin } from "@/react-query/mutation/auth";
 import { loginSchema, type LoginFormValues } from "@/schemas/auth/login";
@@ -41,6 +42,8 @@ export default function LoginPage() {
   const router = useRouter();
   const t = useTranslations("auth.login");
 
+  const { setUser } = useAuthStore();
+
   const {
     control,
     handleSubmit,
@@ -71,7 +74,8 @@ export default function LoginPage() {
       {
         onSuccess: (user) => {
           toast.success(t("toast.success"));
-          router.replace(user.is_superuser ? "/admin/dashboard" : "/");
+          setUser(user);
+          router.replace("/admin/dashboard");
         },
         // biome-ignore lint/suspicious/noExplicitAny: <explanation>
         onError: (error: any) => {

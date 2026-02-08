@@ -1,12 +1,12 @@
-"use client"
+"use client";
 
-import type { DialogTriggerProps, PopoverProps } from "react-aria-components"
+import type { DialogTriggerProps, PopoverProps } from "react-aria-components";
 import {
   DialogTrigger as DialogTriggerPrimitive,
   OverlayArrow,
   Popover as PopoverPrimitive,
-} from "react-aria-components"
-import { cx } from "@/lib/primitive"
+} from "react-aria-components";
+import { cx } from "@/lib/primitive";
 import {
   DialogBody,
   DialogClose,
@@ -15,20 +15,20 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "./dialog"
+} from "./dialog";
 
 const Popover = (props: DialogTriggerProps) => {
-  return <DialogTriggerPrimitive {...props} />
-}
+  return <DialogTriggerPrimitive {...props} />;
+};
 
-const PopoverTitle = DialogTitle
-const PopoverHeader = DialogHeader
-const PopoverBody = DialogBody
-const PopoverFooter = DialogFooter
+const PopoverTitle = DialogTitle;
+const PopoverHeader = DialogHeader;
+const PopoverBody = DialogBody;
+const PopoverFooter = DialogFooter;
 
 interface PopoverContentProps extends PopoverProps {
-  arrow?: boolean
-  ref?: React.Ref<HTMLDivElement>
+  arrow?: boolean;
+  ref?: React.Ref<HTMLDivElement>;
 }
 
 const PopoverContent = ({
@@ -38,7 +38,7 @@ const PopoverContent = ({
   ref,
   ...props
 }: PopoverContentProps) => {
-  const offset = props.offset ?? (arrow ? 12 : 8)
+  const offset = props.offset ?? (arrow ? 12 : 8);
   return (
     <PopoverPrimitive
       ref={ref}
@@ -58,6 +58,7 @@ const PopoverContent = ({
         <>
           {arrow && (
             <OverlayArrow className="group">
+              {/** biome-ignore lint/a11y/noSvgWithoutTitle: <explanation> */}
               <svg
                 width={12}
                 height={12}
@@ -68,20 +69,23 @@ const PopoverContent = ({
               </svg>
             </OverlayArrow>
           )}
-          <div data-slot="popover-inner" className="max-h-[inherit] overflow-y-auto">
+          <div
+            data-slot="popover-inner"
+            className="max-h-[inherit] overflow-y-auto space-y-4"
+          >
             {typeof children === "function" ? children(values) : children}
           </div>
         </>
       )}
     </PopoverPrimitive>
-  )
-}
+  );
+};
 
-const PopoverTrigger = DialogTrigger
-const PopoverClose = DialogClose
-const PopoverDescription = DialogDescription
+const PopoverTrigger = DialogTrigger;
+const PopoverClose = DialogClose;
+const PopoverDescription = DialogDescription;
 
-export type { PopoverProps, PopoverContentProps }
+export type { PopoverProps, PopoverContentProps };
 export {
   Popover,
   PopoverTrigger,
@@ -92,4 +96,4 @@ export {
   PopoverFooter,
   PopoverHeader,
   PopoverTitle,
-}
+};

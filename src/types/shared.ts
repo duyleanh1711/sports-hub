@@ -9,3 +9,13 @@ export type ApiResponse<T> = {
   http_status: number;
   data: T;
 };
+
+export type PaginatedResult<T> = {
+  page: number;
+  limit: number;
+  total_items: number;
+  total_pages: number;
+  has_next: boolean;
+  has_prev: boolean;
+  results: T[];
+};

@@ -7,6 +7,7 @@ import {
   MoonIcon,
   LanguageIcon,
   Cog6ToothIcon,
+  Squares2X2Icon,
   UserCircleIcon,
   ComputerDesktopIcon,
   ArrowLeftOnRectangleIcon,
@@ -16,9 +17,7 @@ import { useTranslations, useLocale } from "next-intl";
 import { useQueryClient } from "@tanstack/react-query";
 
 import { useAuthStore } from "@/stores/auth";
-import { logoutAction } from "@/actions/auth";
-import { useMe } from "@/react-query/query/user";
-
+import { logout } from "@/actions/auth";
 import { getInitials } from "@/utils/get-initials";
 
 import {
@@ -32,7 +31,6 @@ import {
   MenuTrigger,
   MenuSeparator,
 } from "@/components/ui/menu";
-import { Loader } from "@/components/ui/loader";
 import { Avatar } from "@/components/ui/avatar";
 
 export function UserButton() {
@@ -40,20 +38,21 @@ export function UserButton() {
   const locale = useLocale();
   const pathname = usePathname();
 
+  const { user } = useAuthStore();
+
   const t = useTranslations("user.menu");
 
-  const { data, isPending } = useMe();
-  const user = data?.data;
-
-  const { resolvedTheme, setTheme } = useTheme();
   const queryClient = useQueryClient();
   const { resetAuth } = useAuthStore();
 
+  const { resolvedTheme, setTheme } = useTheme();
+
   const handleLogout = async () => {
-    await logoutAction();
+    await logout();
     resetAuth();
     queryClient.clear();
     router.replace("/login");
+    window.location.reload();
   };
 
   const switchLanguage = (nextLocale: "vi" | "en") => {
@@ -63,11 +62,7 @@ export function UserButton() {
     router.replace(segments.join("/"));
   };
 
-  if (isPending) {
-    return <Loader variant="ring" className="size-6 text-primary" />;
-  }
-
-  if (!user) return null;
+  if (!user) return;
 
   return (
     <Menu>
@@ -99,12 +94,19 @@ export function UserButton() {
 
         {/* Account */}
         <MenuSection>
-          <MenuItem onAction={() => router.push("/profile")}>
+          {user.is_superuser && (
+            <MenuItem href="/admin/dashboard">
+              <Squares2X2Icon />
+              <MenuLabel>{t("dashboard")}</MenuLabel>
+            </MenuItem>
+          )}
+
+          <MenuItem href="/profile">
             <UserCircleIcon />
             <MenuLabel>{t("profile")}</MenuLabel>
           </MenuItem>
 
-          <MenuItem onAction={() => router.push("/settings")}>
+          <MenuItem href="/settings">
             <Cog6ToothIcon />
             <MenuLabel>{t("settings")}</MenuLabel>
           </MenuItem>

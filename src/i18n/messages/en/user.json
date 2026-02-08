@@ -1,5 +1,6 @@
 {
   "menu": {
+    "dashboard": "Dashboard",
     "profile": "Profile",
     "settings": "Settings",
     "theme": {

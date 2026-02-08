@@ -1,0 +1,261 @@
+{
+  "sidebar": {
+    "home": "Go to home",
+    "overview": "Overview",
+    "dashboard": "Dashboard",
+    "account": "Account",
+    "toggle": "Toggle sidebar",
+    "collapse": "Collapse sidebar",
+    "expand": "Expand sidebar",
+    "userMenu": {
+      "logout": "Log out"
+    }
+  },
+
+  "breadcrumbs": {
+    "admin": "Admin",
+    "dashboard": "Dashboard",
+    "account": "Account"
+  },
+
+  "pagination": {
+    "first": "First page",
+    "prev": "Previous page",
+    "next": "Next page",
+    "last": "Last page"
+  },
+
+  "account": {
+    "title": "Accounts",
+    "description": "Manage user accounts within the system.",
+    "searchPlaceholder": "Search users",
+
+    "table": {
+      "fullname": "Full name",
+      "email": "Email",
+      "phone": "Phone",
+      "role": "Role",
+      "address": "Address",
+      "status": "Status",
+      "createdAt": "Created at",
+      "actions": "Actions",
+      "empty": "No records found."
+    },
+
+    "role": {
+      "admin": "Admin",
+      "user": "User"
+    },
+
+    "status": {
+      "active": "Active",
+      "inactive": "Inactive",
+      "suspended": "Suspended",
+      "banned": "Banned",
+      "pending": "Pending"
+    },
+
+    "selection": {
+      "none": "You have not selected anything.",
+      "selected": "You have selected <strong>{count}</strong> user",
+      "selected_plural": "You have selected <strong>{count}</strong> users"
+    },
+
+    "actions": {
+      "edit": "Edit",
+      "delete": "Delete",
+      "addAccount": "Add account",
+      "promote": "Promote to admin",
+      "demote": "Demote to user",
+      "deleteSelected": "Delete {count} accounts"
+    },
+
+    "filters": {
+      "title": "Filters",
+
+      "phone": "Phone number",
+      "placeholders": {
+        "country": "Country",
+        "phone": "Enter phone number",
+        "searchCountry": "Search country"
+      },
+
+      "status": {
+        "title": "Status",
+        "active": "Active",
+        "inactive": "Inactive",
+        "pending": "Pending",
+        "suspended": "Suspended",
+        "banned": "Banned"
+      },
+
+      "actions": {
+        "clear": "Clear filter",
+        "clearAll": "Clear all filters"
+      }
+    },
+
+    "modals": {
+      "create": {
+        "title": "Create new account",
+        "description": "Enter information to create a new user account in the system.",
+
+        "fields": {
+          "fullname": "Full name",
+          "password": "Password",
+          "email": "Email",
+          "phone": "Phone number",
+          "country": "Country",
+          "province": "Province / City",
+          "ward": "Ward / Commune",
+          "address": "Street / House number",
+          "status": "Status",
+          "locale": "Language",
+          "isSuperuser": "Administrator"
+        },
+
+        "placeholders": {
+          "fullname": "Enter full name",
+          "password": "Enter password",
+          "email": "Enter email",
+          "phone": "Enter phone number",
+
+          "country": "Select country",
+          "searchCountry": "Search country",
+
+          "province": "Select province / city",
+          "ward": "Select ward / commune",
+          "address": "Enter street / house number"
+        },
+
+        "actions": {
+          "cancel": "Cancel",
+          "submit": "Create account"
+        },
+
+        "validation": {
+          "fullname": {
+            "required": "Full name is required"
+          },
+
+          "password": {
+            "min": "Password must be at least {min} characters",
+            "lowercase": "Password must contain at least one lowercase letter",
+            "uppercase": "Password must contain at least one uppercase letter",
+            "number": "Password must contain at least one number",
+            "special": "Password must contain at least one special character"
+          },
+
+          "email": {
+            "invalid": "Invalid email address"
+          },
+
+          "phone": {
+            "invalid": "Invalid phone number"
+          },
+
+          "emailOrPhone": {
+            "required": "Please provide either an email address or a phone number"
+          }
+        },
+
+        "toast": {
+          "success": "Create account successfully",
+          "error": "Failed to create account"
+        }
+      },
+
+      "update": {
+        "title": "Update account",
+        "description": "Update user account information in the system.",
+
+        "fields": {
+          "fullname": "Full name",
+          "country": "Country",
+          "province": "Province / City",
+          "ward": "Ward / Commune",
+          "address": "Street / House number",
+          "locale": "Language"
+        },
+
+        "placeholders": {
+          "fullname": "Enter full name",
+
+          "country": "Select country",
+          "searchCountry": "Search country",
+
+          "province": "Select province / city",
+          "ward": "Select ward / commune",
+          "address": "Enter street / house number"
+        },
+
+        "actions": {
+          "cancel": "Cancel",
+          "submit": "Update account"
+        },
+
+        "validation": {
+          "fullname": {
+            "required": "Full name is required"
+          }
+        },
+
+        "toast": {
+          "success": "Update account successfully",
+          "error": "Failed to update account"
+        }
+      },
+
+      "delete": {
+        "title": "Delete account",
+        "description": "Are you sure you want to delete this user account? This action cannot be undone.",
+
+        "actions": {
+          "cancel": "Cancel",
+          "confirm": "Delete"
+        },
+
+        "toast": {
+          "success": "Account deleted successfully",
+          "error": "Failed to delete account"
+        }
+      },
+
+      "bulkDelete": {
+        "title": "Delete {count} accounts",
+        "description": "Are you sure you want to delete the selected accounts? This action cannot be undone.",
+
+        "actions": {
+          "cancel": "Cancel",
+          "confirm": "Delete"
+        },
+
+        "toast": {
+          "success": "Accounts deleted successfully",
+          "error": "Failed to delete accounts"
+        }
+      }
+    },
+
+    "updateStatus": {
+      "toast": {
+        "success": "Account status updated successfully",
+        "error": "Failed to update account status"
+      }
+    },
+
+    "updateRole": {
+      "toast": {
+        "success": "Account role updated successfully",
+        "error": "Failed to update account role"
+      }
+    },
+
+    "bulkDelete": {
+      "toast": {
+        "success": "Accounts deleted successfully",
+        "error": "Failed to delete accounts"
+      }
+    }
+  }
+}

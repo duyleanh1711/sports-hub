@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { twMerge } from "tailwind-merge";
 
 export interface AvatarProps {
@@ -36,7 +37,10 @@ export function Avatar({
       data-slot="avatar"
       {...props}
       className={twMerge(
-        "inline-grid size-(--avatar-size) shrink-0 align-middle outline-1 outline-fg/(--ring-opacity) -outline-offset-1 [--avatar-radius:20%] [--ring-opacity:20%] *:col-start-1 *:row-start-1 *:size-(--avatar-size)",
+        "relative inline-grid size-(--avatar-size) shrink-0 align-middle overflow-hidden",
+        "outline-1 outline-fg/(--ring-opacity) -outline-offset-1",
+        "[--avatar-radius:20%] [--ring-opacity:20%]",
+        "*:col-start-1 *:row-start-1",
         size === "xs" && "[--avatar-size:--spacing(5)]",
         size === "sm" && "[--avatar-size:--spacing(6)]",
         size === "md" && "[--avatar-size:--spacing(8)]",
@@ -50,16 +54,19 @@ export function Avatar({
         size === "7xl" && "[--avatar-size:--spacing(32)]",
         size === "8xl" && "[--avatar-size:--spacing(36)]",
         size === "9xl" && "[--avatar-size:--spacing(42)]",
-        isSquare
-          ? "rounded-(--avatar-radius) *:rounded-(--avatar-radius)"
-          : "rounded-full *:rounded-full",
+        isSquare ? "rounded-(--avatar-radius)" : "rounded-full",
         className,
       )}
     >
-      {initials && (
+      {initials && !src && (
         // biome-ignore lint/a11y/noSvgWithoutTitle: <explanation>
         <svg
-          className="size-full select-none fill-current p-[5%] font-md text-[48px] uppercase"
+          className={twMerge(
+            "size-full select-none uppercase",
+            "bg-primary text-white",
+            "fill-current p-[12%]",
+            "font-medium",
+          )}
           viewBox="0 0 100 100"
           aria-hidden={alt ? undefined : "true"}
         >
@@ -71,16 +78,21 @@ export function Avatar({
             dominantBaseline="middle"
             textAnchor="middle"
             dy=".125em"
+            className="text-[52px]"
           >
             {initials}
           </text>
         </svg>
       )}
+
       {src && (
-        <img
-          className="size-full object-cover object-center"
+        <Image
           src={src}
           alt={alt}
+          fill
+          sizes="(max-width: 768px) 48px, 96px"
+          className="object-cover object-center"
+          priority={size === "xl" || size === "2xl"}
         />
       )}
     </span>

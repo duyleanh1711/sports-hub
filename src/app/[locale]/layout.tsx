@@ -8,6 +8,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { Toast } from "@/components/ui/toast";
 
 import AuthProvider from "@/components/providers/auth-provider";
+import NuqsProvider from "@/components/providers/nuqs-provider";
 import QueryProvider from "@/components/providers/query-provider";
 import ThemeProvider from "@/components/providers/theme-provider";
 import RecaptchaProvider from "@/components/providers/recaptcha-provider";
@@ -37,15 +38,17 @@ export default async function RootLayout({
       <body className={`${manrope.variable} antialiased`}>
         <QueryProvider>
           <RecaptchaProvider>
-            <ThemeProvider>
-              <NextIntlClientProvider>
-                <AuthProvider>
-                  <Toast />
-                  <NextTopLoader />
-                  {children}
-                </AuthProvider>
-              </NextIntlClientProvider>
-            </ThemeProvider>
+            <NuqsProvider>
+              <ThemeProvider>
+                <NextIntlClientProvider>
+                  <AuthProvider>
+                    <Toast />
+                    <NextTopLoader />
+                    {children}
+                  </AuthProvider>
+                </NextIntlClientProvider>
+              </ThemeProvider>
+            </NuqsProvider>
           </RecaptchaProvider>
         </QueryProvider>
       </body>

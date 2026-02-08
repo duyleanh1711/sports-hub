@@ -1,0 +1,254 @@
+{
+  "sidebar": {
+    "home": "Về trang chủ",
+    "overview": "Tổng quan",
+    "dashboard": "Bảng điều khiển",
+    "account": "Tài khoản",
+    "toggle": "Thu gọn thanh bên",
+    "collapse": "Thu gọn thanh bên",
+    "expand": "Mở rộng thanh bên",
+    "userMenu": {
+      "logout": "Đăng xuất"
+    }
+  },
+
+  "breadcrumbs": {
+    "admin": "Quản trị viên",
+    "dashboard": "Bảng điều khiển",
+    "account": "Tài khoản"
+  },
+
+  "pagination": {
+    "first": "Trang đầu",
+    "prev": "Trang trước",
+    "next": "Trang sau",
+    "last": "Trang cuối"
+  },
+
+  "account": {
+    "title": "Tài khoản",
+    "description": "Quản lý các tài khoản người dùng trong hệ thống.",
+    "searchPlaceholder": "Tìm kiếm người dùng",
+
+    "table": {
+      "fullname": "Họ và tên",
+      "email": "Email",
+      "phone": "Số điện thoại",
+      "role": "Vai trò",
+      "address": "Địa chỉ",
+      "status": "Trạng thái",
+      "createdAt": "Ngày tạo",
+      "actions": "Thao tác",
+      "empty": "Không có dữ liệu."
+    },
+
+    "role": {
+      "admin": "Quản trị viên",
+      "user": "Người dùng"
+    },
+
+    "status": {
+      "active": "Hoạt động",
+      "inactive": "Không hoạt động",
+      "suspended": "Tạm khóa",
+      "banned": "Bị cấm",
+      "pending": "Chờ duyệt"
+    },
+
+    "selection": {
+      "none": "Bạn chưa chọn người dùng nào.",
+      "selected": "Bạn đã chọn <strong>{count}</strong> người dùng",
+      "selected_plural": "Bạn đã chọn <strong>{count}</strong> người dùng"
+    },
+
+    "actions": {
+      "edit": "Chỉnh sửa",
+      "delete": "Xóa",
+      "addAccount": "Thêm tài khoản",
+      "promote": "Thăng quyền",
+      "demote": "Hạ quyền",
+      "deleteSelected": "Xóa {count} tài khoản"
+    },
+
+    "filters": {
+      "title": "Bộ lọc",
+
+      "phone": "Số điện thoại",
+      "placeholders": {
+        "country": "Quốc gia",
+        "phone": "Nhập số điện thoại",
+        "searchCountry": "Tìm quốc gia"
+      },
+
+      "status": {
+        "title": "Trạng thái",
+        "active": "Hoạt động",
+        "inactive": "Không hoạt động",
+        "pending": "Chờ duyệt",
+        "suspended": "Tạm khóa",
+        "banned": "Cấm"
+      },
+
+      "actions": {
+        "clear": "Xóa bộ lọc",
+        "clearAll": "Xóa tất cả bộ lọc"
+      }
+    },
+
+    "modals": {
+      "create": {
+        "title": "Tạo tài khoản mới",
+        "description": "Nhập thông tin để tạo tài khoản người dùng trong hệ thống.",
+
+        "fields": {
+          "fullname": "Họ và tên",
+          "password": "Mật khẩu",
+          "email": "Email",
+          "phone": "Số điện thoại",
+          "country": "Quốc gia",
+          "province": "Tỉnh / Thành phố",
+          "ward": "Phường / Xã",
+          "address": "Tên đường / số nhà",
+          "status": "Trạng thái",
+          "locale": "Ngôn ngữ",
+          "isSuperuser": "Quản trị viên"
+        },
+
+        "placeholders": {
+          "fullname": "Nhập họ và tên",
+          "password": "Nhập mật khẩu",
+          "email": "Nhập email",
+          "phone": "Nhập số điện thoại",
+
+          "country": "Chọn quốc gia",
+          "searchCountry": "Tìm kiếm quốc gia",
+
+          "province": "Chọn tỉnh / thành phố",
+          "ward": "Chọn phường / xã",
+          "address": "Nhập tên đường / số nhà"
+        },
+
+        "actions": {
+          "cancel": "Hủy",
+          "submit": "Tạo tài khoản"
+        },
+
+        "validation": {
+          "fullname": {
+            "required": "Họ và tên là bắt buộc"
+          },
+
+          "password": {
+            "min": "Mật khẩu phải có ít nhất {min} ký tự",
+            "lowercase": "Mật khẩu phải chứa ít nhất 1 chữ thường",
+            "uppercase": "Mật khẩu phải chứa ít nhất 1 chữ hoa",
+            "number": "Mật khẩu phải chứa ít nhất 1 chữ số",
+            "special": "Mật khẩu phải chứa ít nhất 1 ký tự đặc biệt"
+          },
+
+          "email": {
+            "invalid": "Email không hợp lệ"
+          },
+
+          "phone": {
+            "invalid": "Số điện thoại không hợp lệ"
+          },
+
+          "emailOrPhone": {
+            "required": "Vui lòng nhập email hoặc số điện thoại"
+          }
+        },
+
+        "toast": {
+          "success": "Tạo tài khoản thành công",
+          "error": "Tạo tài khoản thất bại"
+        }
+      },
+
+      "update": {
+        "title": "Cập nhật tài khoản",
+        "description": "Cập nhật thông tin tài khoản người dùng trong hệ thống.",
+
+        "fields": {
+          "fullname": "Họ và tên",
+          "country": "Quốc gia",
+          "province": "Tỉnh / Thành phố",
+          "ward": "Phường / Xã",
+          "address": "Địa chỉ",
+          "locale": "Ngôn ngữ"
+        },
+
+        "placeholders": {
+          "fullname": "Nhập họ và tên",
+
+          "country": "Chọn quốc gia",
+          "searchCountry": "Tìm kiếm quốc gia",
+
+          "province": "Chọn tỉnh / thành phố",
+          "ward": "Chọn phường / xã",
+          "address": "Nhập số nhà, tên đường"
+        },
+
+        "actions": {
+          "cancel": "Hủy",
+          "submit": "Cập nhật"
+        },
+
+        "validation": {
+          "fullname": {
+            "required": "Họ và tên là bắt buộc"
+          }
+        },
+
+        "toast": {
+          "success": "Cập nhật tài khoản thành công",
+          "error": "Cập nhật tài khoản thất bại"
+        }
+      },
+
+      "delete": {
+        "title": "Xóa tài khoản",
+        "description": "Bạn có chắc chắn muốn xóa tài khoản người dùng này? Hành động này không thể hoàn tác.",
+
+        "actions": {
+          "cancel": "Hủy",
+          "confirm": "Xóa"
+        },
+
+        "toast": {
+          "success": "Xóa tài khoản thành công",
+          "error": "Xóa tài khoản thất bại"
+        }
+      },
+
+      "bulkDelete": {
+        "title": "Xóa {count} tài khoản",
+        "description": "Bạn có chắc chắn muốn xóa các tài khoản đã chọn không? Hành động này không thể hoàn tác.",
+
+        "actions": {
+          "cancel": "Hủy",
+          "confirm": "Xóa"
+        },
+
+        "toast": {
+          "success": "Xóa tài khoản thành công",
+          "error": "Xóa tài khoản thất bại"
+        }
+      }
+    },
+
+    "updateStatus": {
+      "toast": {
+        "success": "Cập nhật trạng thái tài khoản thành công",
+        "error": "Cập nhật trạng thái tài khoản thất bại"
+      }
+    },
+
+    "updateRole": {
+      "toast": {
+        "success": "Cập nhật vai trò tài khoản thành công",
+        "error": "Cập nhật vai trò tài khoản thất bại"
+      }
+    }
+  }
+}

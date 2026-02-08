@@ -1,12 +1,11 @@
-"use client"
+"use client";
 
-import { CheckIcon } from "@heroicons/react/16/solid"
 import type {
   ListBoxItemProps,
   ListBoxSectionProps,
   SeparatorProps,
   TextProps,
-} from "react-aria-components"
+} from "react-aria-components";
 import {
   Collection,
   composeRenderProps,
@@ -15,10 +14,10 @@ import {
   ListBoxSection,
   Separator,
   Text,
-} from "react-aria-components"
-import { twJoin, twMerge } from "tailwind-merge"
-import { tv } from "tailwind-variants"
-import { Keyboard } from "./keyboard"
+} from "react-aria-components";
+import { twMerge } from "tailwind-merge";
+import { tv } from "tailwind-variants";
+import { Keyboard } from "./keyboard";
 
 const dropdownSectionStyles = tv({
   slots: {
@@ -26,12 +25,12 @@ const dropdownSectionStyles = tv({
     header:
       "col-span-full px-3 py-2 font-medium text-muted-fg text-sm/6 sm:px-2.5 sm:py-1.5 sm:text-xs/3",
   },
-})
+});
 
-const { section, header } = dropdownSectionStyles()
+const { section, header } = dropdownSectionStyles();
 
 interface DropdownSectionProps<T> extends ListBoxSectionProps<T> {
-  title?: string
+  title?: string;
 }
 
 const DropdownSection = <T extends object>({
@@ -44,8 +43,8 @@ const DropdownSection = <T extends object>({
       {"title" in props && <Header className={header()}>{props.title}</Header>}
       <Collection items={props.items}>{children}</Collection>
     </ListBoxSection>
-  )
-}
+  );
+};
 
 const dropdownItemStyles = tv({
   base: [
@@ -106,66 +105,81 @@ const dropdownItemStyles = tv({
       ],
     },
   },
-})
+});
 
 interface DropdownItemProps extends ListBoxItemProps {
-  intent?: "danger" | "warning"
+  intent?: "danger" | "warning";
 }
 
-const DropdownItem = ({ className, children, intent, ...props }: DropdownItemProps) => {
-  const textValue = typeof children === "string" ? children : undefined
+const DropdownItem = ({
+  className,
+  children,
+  intent,
+  ...props
+}: DropdownItemProps) => {
+  const textValue = typeof children === "string" ? children : undefined;
   return (
     <ListBoxItemPrimitive
       textValue={textValue}
       className={composeRenderProps(className, (className, renderProps) =>
-        dropdownItemStyles({ ...renderProps, intent, className }),
+        dropdownItemStyles({
+          ...renderProps,
+          intent,
+          className: `cursor-pointer ${className ?? ""}`,
+        }),
       )}
       {...props}
     >
-      {composeRenderProps(children, (children, { isSelected }) => (
+      {composeRenderProps(children, (children) => (
         <>
-          {isSelected && (
-            <CheckIcon
-              className={twJoin(
-                "-ms-0.5 me-1.5 h-lh w-4 shrink-0",
-                "group-has-data-[slot=icon]:absolute group-has-data-[slot=icon]:end-0.5 group-has-data-[slot=icon]:top-1/2 group-has-data-[slot=icon]:-translate-y-1/2",
-                "group-has-data-[slot=avatar]:absolute group-has-data-[slot=avatar]:end-0.5 group-has-data-[slot=avatar]:top-1/2 group-has-data-[slot=avatar]:-translate-y-1/2",
-              )}
-              data-slot="check-indicator"
-            />
+          {typeof children === "string" ? (
+            <DropdownLabel>{children}</DropdownLabel>
+          ) : (
+            children
           )}
-          {typeof children === "string" ? <DropdownLabel>{children}</DropdownLabel> : children}
         </>
       ))}
     </ListBoxItemPrimitive>
-  )
-}
+  );
+};
 
 const DropdownLabel = ({ className, ...props }: TextProps) => (
   <Text
     slot="label"
-    className={twMerge("col-start-2 [&:has(+[data-slot=icon])]:pe-6", className)}
+    className={twMerge(
+      "col-start-2 [&:has(+[data-slot=icon])]:pe-6",
+      className,
+    )}
     {...props}
   />
-)
+);
 
 const DropdownDescription = ({ className, ...props }: TextProps) => (
   <Text
     slot="description"
-    className={twMerge("col-start-2 font-normal text-muted-fg text-sm", className)}
+    className={twMerge(
+      "col-start-2 font-normal text-muted-fg text-sm",
+      className,
+    )}
     {...props}
   />
-)
+);
 
-const DropdownSeparator = ({ className, ...props }: Omit<SeparatorProps, "orientation">) => (
+const DropdownSeparator = ({
+  className,
+  ...props
+}: Omit<SeparatorProps, "orientation">) => (
   <Separator
     orientation="horizontal"
     className={twMerge("col-span-full -mx-1 h-px bg-fg/10", className)}
     {...props}
   />
-)
+);
 
-const DropdownKeyboard = ({ className, ...props }: React.ComponentProps<typeof Keyboard>) => {
+const DropdownKeyboard = ({
+  className,
+  ...props
+}: React.ComponentProps<typeof Keyboard>) => {
   return (
     <Keyboard
       className={twMerge(
@@ -174,14 +188,14 @@ const DropdownKeyboard = ({ className, ...props }: React.ComponentProps<typeof K
       )}
       {...props}
     />
-  )
-}
+  );
+};
 
 /**
  * Note: This is not exposed component, but it's used in other components to render dropdowns.
  * @internal
  */
-export type { DropdownSectionProps, DropdownItemProps }
+export type { DropdownSectionProps, DropdownItemProps };
 export {
   DropdownSeparator,
   DropdownItem,
@@ -191,4 +205,4 @@ export {
   dropdownItemStyles,
   DropdownSection,
   dropdownSectionStyles,
-}
+};

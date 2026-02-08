@@ -2,11 +2,11 @@
 
 import { cookies } from "next/headers";
 
-import { apiServer } from "@/lib/axios/api-server";
+import { apiClient } from "@/lib/axios/api-client";
 import type { LoginPayload, LoginResponse } from "@/types/auth";
 
-export async function loginAction(payload: LoginPayload) {
-  const { data } = await apiServer.post<LoginResponse>(
+export async function login(payload: LoginPayload) {
+  const { data } = await apiClient.post<LoginResponse>(
     "/auth/login/user",
     payload,
   );
@@ -28,7 +28,7 @@ export async function loginAction(payload: LoginPayload) {
   return user;
 }
 
-export async function logoutAction() {
+export async function logout() {
   const cookieStore = await cookies();
   cookieStore.delete("access_token");
 }
