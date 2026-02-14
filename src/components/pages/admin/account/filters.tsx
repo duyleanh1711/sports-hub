@@ -21,15 +21,11 @@ import { useDebounce } from "@/hooks/use-debounce";
 import { useTextFilter } from "@/hooks/use-text-filter";
 import { useMultiSelectFilter } from "@/hooks/use-multi-select-filter";
 
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { SearchInput } from "@/components/ui/search-field";
+import { Tooltip, TooltipContent } from "@/components/ui/tooltip";
 import { Popover, PopoverContent } from "@/components/ui/popover";
 import { Select, SelectItem, SelectTrigger } from "@/components/ui/select";
 
@@ -94,21 +90,22 @@ export function AccountFilters() {
   return (
     <Popover>
       <Tooltip delay={0}>
-        <TooltipTrigger aria-label={t("title")}>
-          <Button
-            intent={isActive ? "secondary" : "outline"}
-            size="lg"
-            className={cn(
-              count > 0
-                ? "group bg-primary/10 text-primary hover:bg-primary/10"
-                : "gap-2",
-            )}
-          >
-            <FunnelIcon className="size-4 group-hover:text-primary!" />
-            {count > 0 && <span className="text-xs font-medium">{count}</span>}
-          </Button>
-        </TooltipTrigger>
-        <TooltipContent>{t("title")}</TooltipContent>
+        <Button
+          intent={isActive ? "secondary" : "outline"}
+          size="lg"
+          className={cn(
+            "group gap-2",
+            count > 0 && "bg-primary/10 text-primary hover:bg-primary/10",
+          )}
+        >
+          <FunnelIcon className="size-4 group-hover:text-primary!" />
+          <span className="lg:hidden font-medium">{t("title")}</span>
+          {count > 0 && <span className="text-xs font-medium">{count}</span>}
+        </Button>
+
+        <TooltipContent className="hidden lg:block">
+          {t("title")}
+        </TooltipContent>
       </Tooltip>
 
       <PopoverContent arrow className="space-y-4 p-4 min-w-full sm:min-w-lg">

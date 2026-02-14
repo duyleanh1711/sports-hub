@@ -39,7 +39,8 @@
       "status": "Status",
       "createdAt": "Created at",
       "actions": "Actions",
-      "empty": "No records found."
+      "empty": "No records found.",
+      "loading": "Loading accounts..."
     },
 
     "role": {

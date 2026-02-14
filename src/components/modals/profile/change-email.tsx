@@ -110,7 +110,7 @@ export function ChangeEmailModal({ children }: { children?: ReactNode }) {
         <Form
           onSubmit={handleSubmit(step === "email" ? requestOtp : verifyOtp)}
         >
-          <ModalHeader>
+          <ModalHeader className="pb-0">
             <ModalTitle>{t("title")}</ModalTitle>
 
             <ModalDescription>

@@ -153,12 +153,12 @@ export function UpdateUserModal({
     <Modal isOpen={open} onOpenChange={onOpenChange}>
       <ModalContent className="max-w-xl!">
         <Form onSubmit={handleSubmit(onSubmit)}>
-          <ModalHeader>
+          <ModalHeader className="sm:pb-0">
             <ModalTitle>{t("title")}</ModalTitle>
             <ModalDescription>{t("description")}</ModalDescription>
           </ModalHeader>
 
-          <ModalBody className="max-h-[65vh] overflow-y-auto">
+          <ModalBody className="max-h-[60vh] sm:max-h-[65vh] overflow-y-auto">
             <Fieldset>
               {/* Fullname */}
               <Controller
@@ -258,7 +258,7 @@ export function UpdateUserModal({
 
               {/* Vietnam only */}
               {isVietnam && (
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {/* Province */}
                   <Controller
                     name="province"

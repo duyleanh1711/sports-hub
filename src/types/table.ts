@@ -10,9 +10,10 @@ export type DataTableColumn<T> = {
 
 export type DataTableProps<T> = {
   data: T[];
-  columns: DataTableColumn<T>[];
-  selectionMode?: "none" | "single" | "multiple";
+  isPending?: boolean;
   selectedKeys?: Selection;
-  onSelectionChange?: (keys: Selection) => void;
   getRowKey: (item: T) => Key;
+  columns: DataTableColumn<T>[];
+  onSelectionChange?: (keys: Selection) => void;
+  selectionMode?: "none" | "single" | "multiple";
 };

@@ -139,8 +139,19 @@ export function CreateUserModal({ children }: { children: ReactElement }) {
             <ModalDescription>{t("description")}</ModalDescription>
           </ModalHeader>
 
-          <ModalBody className="max-h-[65vh] overflow-y-auto">
+          <ModalBody className="max-h-[60vh] sm:max-h-[65vh] overflow-y-auto">
             <Fieldset>
+              {/* Superuser */}
+              <Controller
+                name="is_superuser"
+                control={control}
+                render={({ field }) => (
+                  <Checkbox isSelected={field.value} onChange={field.onChange}>
+                    <CheckboxLabel>{t("fields.isSuperuser")}</CheckboxLabel>
+                  </Checkbox>
+                )}
+              />
+
               {/* Fullname */}
               <Controller
                 name="fullname"
@@ -205,14 +216,14 @@ export function CreateUserModal({ children }: { children: ReactElement }) {
                   >
                     <Label>{t("fields.phone")}</Label>
 
-                    <div className="flex gap-2">
+                    <div className="flex flex-col sm:flex-row gap-2">
                       {/* Country select */}
                       <Controller
                         name="country_code"
                         control={control}
                         render={({ field }) => {
                           return (
-                            <div className="w-fit">
+                            <div className="w-full sm:w-fit">
                               <Select
                                 selectedKey={field.value ?? undefined}
                                 onSelectionChange={field.onChange}
@@ -455,7 +466,7 @@ export function CreateUserModal({ children }: { children: ReactElement }) {
                 )}
               />
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {/* Status */}
                 <Controller
                   name="status"
@@ -508,17 +519,6 @@ export function CreateUserModal({ children }: { children: ReactElement }) {
                   )}
                 />
               </div>
-
-              {/* Superuser */}
-              <Controller
-                name="is_superuser"
-                control={control}
-                render={({ field }) => (
-                  <Checkbox isSelected={field.value} onChange={field.onChange}>
-                    <CheckboxLabel>{t("fields.isSuperuser")}</CheckboxLabel>
-                  </Checkbox>
-                )}
-              />
             </Fieldset>
           </ModalBody>
 

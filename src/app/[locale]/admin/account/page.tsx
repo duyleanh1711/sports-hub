@@ -4,23 +4,19 @@ import { useEffect, useState } from "react";
 
 import { useTranslations } from "next-intl";
 import type { Selection } from "react-aria-components";
-import { PlusIcon, TrashIcon } from "@heroicons/react/24/outline";
 
 import { useDebounce } from "@/hooks/use-debounce";
+import { useUsers } from "@/react-query/query/user";
 import { getPageRange } from "@/utils/get-page-range";
 import { useAccountParams } from "@/nuqs/use-account-params";
 
-import { useUsers } from "@/react-query/query/user";
-
-import { Button } from "@/components/ui/button";
 import { Description } from "@/components/ui/field";
 import { Card, CardHeader, CardFooter } from "@/components/ui/card";
 
-import { AccountFilters } from "@/components/pages/admin/account/filters";
-import { getAccountColumns } from "@/components/pages/admin/columns/account";
-
-import { CreateUserModal } from "@/components/modals/admin/user/create";
 import { BulkDeleteUsersModal } from "@/components/modals/admin/user/bulk-delete";
+
+import { getAccountColumns } from "@/components/pages/admin/columns/account";
+import { AccountToolbarActions } from "@/components/pages/admin/account/toolbar-actions";
 
 import { DataTable } from "@/components/shared/data-table/data-table";
 import { DataTableToolbar } from "@/components/shared/data-table/data-table-toolbar";
@@ -47,7 +43,7 @@ export default function AccountPage() {
     setSearchInput(search);
   }, [search]);
 
-  const { data } = useUsers({
+  const { data, isPending } = useUsers({
     page,
     limit,
     filters,
@@ -85,27 +81,11 @@ export default function AccountPage() {
             onSearchChange={setSearchInput}
             searchPlaceholder={t("searchPlaceholder")}
             actions={
-              <div className="flex items-center gap-2">
-                <AccountFilters />
-
-                {selectedCount > 0 && (
-                  <Button
-                    intent="danger"
-                    onPress={() => setOpenBulkDelete(true)}
-                    className="gap-2"
-                  >
-                    <TrashIcon className="size-4" />
-                    {t("actions.deleteSelected", { count: selectedCount })}
-                  </Button>
-                )}
-
-                <CreateUserModal>
-                  <Button className="shrink-0 gap-2">
-                    <PlusIcon className="size-4" />
-                    {t("actions.addAccount")}
-                  </Button>
-                </CreateUserModal>
-              </div>
+              <AccountToolbarActions
+                t={t}
+                selectedCount={selectedCount}
+                onBulkDelete={() => setOpenBulkDelete(true)}
+              />
             }
           />
         </CardHeader>
@@ -113,6 +93,7 @@ export default function AccountPage() {
         <DataTable
           data={users}
           columns={columns}
+          isPending={isPending}
           getRowKey={(u) => u.id}
           selectionMode="multiple"
           selectedKeys={selectedKeys}

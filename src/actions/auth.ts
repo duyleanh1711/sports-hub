@@ -2,13 +2,13 @@
 
 import { cookies } from "next/headers";
 
-import axios from "axios";
+import { safeApi } from "@/lib/api/safe-api";
+import { apiClient } from "@/lib/api/api-client";
 
-import { apiClient } from "@/lib/axios/api-client";
 import type { LoginPayload, LoginResponse } from "@/types/auth";
 
 export async function login(payload: LoginPayload) {
-  try {
+  return safeApi(async () => {
     const { data } = await apiClient.post<LoginResponse>(
       "/auth/login/user",
       payload,
@@ -29,15 +29,7 @@ export async function login(payload: LoginPayload) {
     });
 
     return user;
-  } catch (error) {
-    if (axios.isAxiosError(error)) {
-      console.error("LOGIN ERROR:", error.response?.data);
-
-      throw new Error(error.response?.data?.code);
-    }
-
-    throw error;
-  }
+  });
 }
 
 export async function logout() {

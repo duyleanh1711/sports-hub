@@ -39,7 +39,8 @@
       "status": "Trạng thái",
       "createdAt": "Ngày tạo",
       "actions": "Thao tác",
-      "empty": "Không có dữ liệu."
+      "empty": "Không có dữ liệu.",
+      "loading": "Đang tải dữ liệu..."
     },
 
     "role": {

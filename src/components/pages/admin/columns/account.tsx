@@ -8,7 +8,7 @@ import { STATUS_BADGE } from "@/constants/status/status-badge";
 
 import { Badge } from "@/components/ui/badge";
 
-import { AccountRowActions } from "../account/actions";
+import { AccountRowActions } from "../account/row-actions";
 
 export function getAccountColumns(
   t: ReturnType<typeof useTranslations>,

@@ -30,7 +30,7 @@ export function DataTableToolbar({
       </div>
 
       {(onSearchChange || actions) && (
-        <CardAction className="w-full flex flex-col sm:flex-row items-center justify-end gap-2">
+        <CardAction className="w-full flex items-center justify-end gap-2">
           {onSearchChange && (
             <SearchInput
               className="min-w-full sm:min-w-sm"
