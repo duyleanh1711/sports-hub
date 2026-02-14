@@ -1,0 +1,181 @@
+{
+  "breadcrumbs": {
+    "home": "Trang chủ",
+    "profile": "Hồ sơ cá nhân",
+    "account": "Cài đặt tài khoản",
+    "security": "Bảo mật",
+    "login-history": "Lịch sử đăng nhập"
+  },
+
+  "sidebar": {
+    "heading": "Cài đặt",
+    "profile": "Thông tin cá nhân",
+    "account": "Cài đặt tài khoản",
+    "security": "Bảo mật",
+    "loginHistory": "Lịch sử đăng nhập"
+  },
+
+  "account": {
+    "title": "Cài đặt tài khoản",
+
+    "fields": {
+      "fullname": "Họ và tên",
+      "email": "Email",
+      "phone": "Số điện thoại",
+      "country": "Quốc gia",
+      "province": "Tỉnh / Thành phố",
+      "ward": "Phường / Xã",
+      "address": "Địa chỉ"
+    },
+
+    "placeholders": {
+      "fullname": "Nhập họ và tên",
+      "country": "Chọn quốc gia",
+      "searchCountry": "Tìm quốc gia...",
+      "province": "Chọn tỉnh / thành phố",
+      "ward": "Chọn phường / xã",
+      "address": "Nhập địa chỉ"
+    },
+
+    "actions": {
+      "changeEmail": "Đổi email",
+      "changePhone": "Đổi số điện thoại"
+    },
+
+    "validation": {
+      "fullname": {
+        "required": "Vui lòng nhập họ và tên"
+      }
+    },
+
+    "toast": {
+      "success": "Cập nhật hồ sơ thành công",
+      "error": "Cập nhật hồ sơ thất bại"
+    },
+
+    "save": "Lưu thay đổi",
+    "saving": "Đang lưu..."
+  },
+
+  "security": {
+    "changePassword": {
+      "title": "Thay đổi mật khẩu",
+      "fields": {
+        "current": "Mật khẩu hiện tại",
+        "new": "Mật khẩu mới",
+        "confirm": "Xác nhận mật khẩu"
+      },
+      "actions": {
+        "save": "Cập nhật mật khẩu",
+        "saving": "Đang cập nhật..."
+      },
+      "placeholders": {
+        "current": "Nhập mật khẩu hiện tại",
+        "new": "Nhập mật khẩu mới",
+        "confirm": "Nhập lại mật khẩu mới"
+      },
+      "validation": {
+        "current": {
+          "required": "Mật khẩu hiện tại là bắt buộc"
+        },
+        "new": {
+          "min": "Mật khẩu phải có ít nhất 8 ký tự",
+          "max": "Mật khẩu không được vượt quá 64 ký tự",
+          "lowercase": "Mật khẩu phải có ít nhất 1 chữ thường",
+          "uppercase": "Mật khẩu phải có ít nhất 1 chữ hoa",
+          "number": "Mật khẩu phải có ít nhất 1 chữ số",
+          "special": "Mật khẩu phải có ít nhất 1 ký tự đặc biệt",
+          "noSpace": "Mật khẩu không được chứa khoảng trắng",
+          "sameAsCurrent": "Mật khẩu mới không được trùng mật khẩu hiện tại"
+        },
+        "confirm": {
+          "required": "Vui lòng xác nhận mật khẩu",
+          "notMatch": "Mật khẩu xác nhận không khớp"
+        }
+      },
+      "toast": {
+        "success": "Đổi mật khẩu thành công",
+        "error": "Đổi mật khẩu thất bại",
+        "incorrectCurrent": "Mật khẩu hiện tại không đúng"
+      }
+    }
+  },
+
+  "modals": {
+    "changeEmail": {
+      "title": "Thay đổi email",
+      "description": "Cập nhật địa chỉ email của bạn. Bạn có thể cần xác thực email mới.",
+      "otpDescription": "Mã xác thực đã được gửi tới <highlight>{email}</highlight>. Vui lòng nhập mã bên dưới.",
+      "fields": {
+        "email": "Email",
+        "otp": "Mã xác thực"
+      },
+      "placeholders": {
+        "email": "Nhập email mới",
+        "otp": "Nhập mã xác thực"
+      },
+      "actions": {
+        "cancel": "Hủy",
+        "save": "Lưu thay đổi",
+        "sendOtp": "Gửi mã",
+        "verify": "Xác thực",
+        "resendOtp": "Gửi lại mã",
+        "resendOtpCountdown": "Gửi lại sau {seconds}s",
+        "back": "Quay lại"
+      },
+      "validation": {
+        "email": {
+          "required": "Email là bắt buộc",
+          "invalid": "Email không hợp lệ"
+        },
+        "otp": {
+          "required": "Mã xác thực là bắt buộc",
+          "invalid": "Mã xác thực không hợp lệ"
+        }
+      },
+      "toast": {
+        "success": "Cập nhật email thành công",
+        "error": "Cập nhật email thất bại"
+      }
+    },
+
+    "changePhone": {
+      "title": "Thay đổi số điện thoại",
+      "description": "Cập nhật số điện thoại của bạn. Bạn có thể cần xác thực số mới.",
+      "otpDescription": "Mã xác thực đã được gửi tới <highlight>{phone}</highlight>.",
+      "fields": {
+        "phone": "Số điện thoại",
+        "otp": "Mã xác thực"
+      },
+      "placeholders": {
+        "phone": "Nhập số điện thoại mới",
+        "otp": "Nhập mã xác thực",
+        "country": "Quốc gia",
+        "searchCountry": "Tìm quốc gia"
+      },
+      "actions": {
+        "cancel": "Hủy",
+        "save": "Lưu thay đổi",
+        "sendOtp": "Gửi mã",
+        "verify": "Xác thực",
+        "resendOtp": "Gửi lại mã",
+        "resendOtpCountdown": "Gửi lại sau {seconds}s",
+        "back": "Quay lại"
+      },
+      "validation": {
+        "phone": {
+          "required": "Số điện thoại là bắt buộc",
+          "invalid": "Số điện thoại không hợp lệ"
+        },
+        "otp": {
+          "required": "Mã xác thực là bắt buộc",
+          "invalid": "Mã xác thực không hợp lệ"
+        }
+      },
+      "toast": {
+        "success": "Cập nhật số điện thoại thành công",
+        "error": "Cập nhật số điện thoại thất bại"
+      }
+    }
+  }
+}

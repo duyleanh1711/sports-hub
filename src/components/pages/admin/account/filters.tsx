@@ -111,7 +111,7 @@ export function AccountFilters() {
         <TooltipContent>{t("title")}</TooltipContent>
       </Tooltip>
 
-      <PopoverContent arrow className="space-y-4 p-4 min-w-lg">
+      <PopoverContent arrow className="space-y-4 p-4 min-w-full sm:min-w-lg">
         <div className="flex items-center justify-between">
           <h3 className="text-base font-semibold">{t("title")}</h3>
 
@@ -128,9 +128,9 @@ export function AccountFilters() {
         <div className="space-y-1">
           <div className="text-sm font-medium">{t("phone")}</div>
 
-          <div className="flex gap-2">
+          <div className="flex flex-col sm:flex-row gap-2">
             {/* Country selector */}
-            <div className="w-fit">
+            <div className="w-full sm:w-fit">
               <Select
                 selectedKey={countryCode ?? undefined}
                 onSelectionChange={(key) => setCountryCode(key as string)}
@@ -204,7 +204,7 @@ export function AccountFilters() {
         <div className="space-y-1">
           <div className="text-sm font-medium">{t("status.title")}</div>
 
-          <div className="grid grid-cols-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2">
             {STATUS_OPTIONS.map(({ key, i18nKey }) => {
               const selected = statusFilter.values.has(key);
 

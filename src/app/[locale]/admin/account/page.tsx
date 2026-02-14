@@ -77,7 +77,7 @@ export default function AccountPage() {
   return (
     <>
       <Card className="h-[calc(100vh-65px)] flex flex-col gap-2 p-4">
-        <CardHeader className="p-0">
+        <CardHeader className="p-0 flex">
           <DataTableToolbar
             title={t("title")}
             searchValue={searchInput}
@@ -85,7 +85,7 @@ export default function AccountPage() {
             onSearchChange={setSearchInput}
             searchPlaceholder={t("searchPlaceholder")}
             actions={
-              <div className="flex gap-2">
+              <div className="flex items-center gap-2">
                 <AccountFilters />
 
                 {selectedCount > 0 && (
@@ -100,7 +100,7 @@ export default function AccountPage() {
                 )}
 
                 <CreateUserModal>
-                  <Button className="gap-2">
+                  <Button className="shrink-0 gap-2">
                     <PlusIcon className="size-4" />
                     {t("actions.addAccount")}
                   </Button>
@@ -119,8 +119,8 @@ export default function AccountPage() {
           onSelectionChange={setSelectedKeys}
         />
 
-        <CardFooter className="flex items-center justify-between border-0! mt-auto pt-2! px-0!">
-          <Description className="flex-1 block text-muted-fg [&>strong]:text-fg">
+        <CardFooter className="flex items-center justify-center sm:justify-between border-0! mt-auto pt-2! px-0!">
+          <Description className="flex-1 hidden sm:block text-muted-fg [&>strong]:text-fg">
             {selectedCount > 0
               ? t.rich("selection.selected", {
                   count: selectedCount,

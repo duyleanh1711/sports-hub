@@ -59,3 +59,18 @@ export type UpdateUserPayload = Partial<{
   address: string | null;
   locale: "vi-VN" | "en-US";
 }>;
+
+export type UpdateMyEmailPayload = {
+  otp: string;
+  new_email: string;
+};
+
+export type UpdateMyPhonePayload = {
+  otp: string;
+  new_phone: string;
+};
+
+export type UpdateMyPasswordPayload = {
+  old_password: string;
+  new_password: string;
+};

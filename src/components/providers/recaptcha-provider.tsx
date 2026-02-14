@@ -9,13 +9,13 @@ export default function RecaptchaProvider({
 }) {
   return (
     <GoogleReCaptchaProvider
-      // biome-ignore lint/style/noNonNullAssertion: <explanation>
-      reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
       scriptProps={{
-        async: true,
-        defer: true,
+        async: false,
+        defer: false,
         appendTo: "head",
       }}
+      // biome-ignore lint/style/noNonNullAssertion: <explanation>
+      reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
     >
       {children}
     </GoogleReCaptchaProvider>

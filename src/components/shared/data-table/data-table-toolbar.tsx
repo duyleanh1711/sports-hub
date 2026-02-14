@@ -23,16 +23,17 @@ export function DataTableToolbar({
   searchPlaceholder,
 }: DataTableToolbarProps) {
   return (
-    <>
-      <CardTitle>{title}</CardTitle>
-
-      {description && <CardDescription>{description}</CardDescription>}
+    <div className="w-full flex items-center justify-between">
+      <div className="hidden sm:block w-[60%]">
+        <CardTitle>{title}</CardTitle>
+        {description && <CardDescription>{description}</CardDescription>}
+      </div>
 
       {(onSearchChange || actions) && (
-        <CardAction className="flex items-center gap-2">
+        <CardAction className="w-full flex flex-col sm:flex-row items-center justify-end gap-2">
           {onSearchChange && (
             <SearchInput
-              className="min-w-sm"
+              className="min-w-full sm:min-w-sm"
               value={searchValue}
               placeholder={searchPlaceholder}
               onChange={(e) => onSearchChange(e.target.value)}
@@ -42,6 +43,6 @@ export function DataTableToolbar({
           {actions}
         </CardAction>
       )}
-    </>
+    </div>
   );
 }

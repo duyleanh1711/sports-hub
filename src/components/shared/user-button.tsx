@@ -101,7 +101,7 @@ export function UserButton() {
             </MenuItem>
           )}
 
-          <MenuItem href="/profile">
+          <MenuItem href="/profile/account">
             <UserCircleIcon />
             <MenuLabel>{t("profile")}</MenuLabel>
           </MenuItem>

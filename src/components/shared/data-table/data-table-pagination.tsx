@@ -35,7 +35,7 @@ export function DataTablePagination({
   const t = useTranslations("admin.pagination");
 
   return (
-    <Pagination className="flex-1 justify-end">
+    <Pagination className="flex-1 justify-center sm:justify-end">
       <PaginationList>
         <Tooltip delay={0}>
           <TooltipTrigger>

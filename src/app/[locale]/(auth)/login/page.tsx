@@ -1,16 +1,11 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-
-import { toast } from "sonner";
 import { useTranslations } from "next-intl";
 import { Form } from "react-aria-components";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, Controller } from "react-hook-form";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
-import { useAuthStore } from "@/stores/auth";
-import { getCaptchaToken } from "@/lib/recaptcha";
 import { useLogin } from "@/react-query/mutation/auth";
 import { loginSchema, type LoginFormValues } from "@/schemas/auth/login";
 
@@ -39,10 +34,7 @@ import { ThemeSwitcher } from "@/components/shared/theme-switcher";
 import { LanguageSwitcher } from "@/components/shared/language-switcher";
 
 export default function LoginPage() {
-  const router = useRouter();
   const t = useTranslations("auth.login");
-
-  const { setUser } = useAuthStore();
 
   const {
     control,
@@ -63,33 +55,15 @@ export default function LoginPage() {
   const { executeRecaptcha } = useGoogleReCaptcha();
 
   const onSubmit = async (data: LoginFormValues) => {
-    const captcha_token = await getCaptchaToken(executeRecaptcha);
+    if (!executeRecaptcha) return;
+    const token = await executeRecaptcha("login");
 
-    mutate(
-      {
-        email: data.email,
-        password: data.password,
-        captcha_token,
-      },
-      {
-        onSuccess: (user) => {
-          toast.success(t("toast.success"));
-          setUser(user);
-          router.replace("/admin/dashboard");
-        },
-        // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-        onError: (error: any) => {
-          const rawCode = error?.response?.data?.code;
-          const code = rawCode?.replace("AUTH_", "")?.toLowerCase();
+    if (!token) return;
 
-          toast.error(
-            t(`toast.failed.${code}`, {
-              defaultValue: t("toast.failed.default"),
-            }),
-          );
-        },
-      },
-    );
+    mutate({
+      ...data,
+      captcha_token: token,
+    });
   };
 
   return (

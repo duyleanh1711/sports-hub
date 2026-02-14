@@ -1,6 +1,7 @@
+import "../globals.css";
+
 import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
-import "../globals.css";
 
 import NextTopLoader from "nextjs-toploader";
 import { NextIntlClientProvider } from "next-intl";
@@ -36,8 +37,8 @@ export default async function RootLayout({
   return (
     <html lang={locale} suppressHydrationWarning>
       <body className={`${manrope.variable} antialiased`}>
-        <QueryProvider>
-          <RecaptchaProvider>
+        <RecaptchaProvider>
+          <QueryProvider>
             <NuqsProvider>
               <ThemeProvider>
                 <NextIntlClientProvider>
@@ -49,8 +50,8 @@ export default async function RootLayout({
                 </NextIntlClientProvider>
               </ThemeProvider>
             </NuqsProvider>
-          </RecaptchaProvider>
-        </QueryProvider>
+          </QueryProvider>
+        </RecaptchaProvider>
       </body>
     </html>
   );

@@ -1,7 +1,5 @@
 "use server";
 
-import { AxiosError } from "axios";
-
 import { apiServer } from "@/lib/axios/api-server";
 
 import type {
@@ -9,6 +7,9 @@ import type {
   GetUsersParams,
   CreateUserPayload,
   UpdateUserPayload,
+  UpdateMyPhonePayload,
+  UpdateMyEmailPayload,
+  UpdateMyPasswordPayload,
 } from "@/types/user";
 import type { ApiResponse, PaginatedResult } from "@/types/shared";
 
@@ -31,6 +32,7 @@ export async function getUsers(params?: GetUsersParams) {
       limit: 10,
       ...params,
       filters:
+        // biome-ignore lint/complexity/useOptionalChain: <explanation>
         params?.filters && params.filters.length
           ? JSON.stringify(params.filters)
           : undefined,
@@ -48,149 +50,94 @@ export async function getUsers(params?: GetUsersParams) {
 }
 
 export async function createUser(payload: CreateUserPayload) {
-  try {
-    const { data } = await apiServer.post("/users", payload);
-    return data;
-  } catch (error) {
-    if (error instanceof AxiosError) {
-      throw new Error(
-        JSON.stringify({
-          status: error.response?.status,
-          data: error.response?.data,
-        }),
-      );
-    }
+  const { data } = await apiServer.post("/users", payload);
+  return data;
+}
 
-    throw new Error("Unknown error");
-  }
+export async function updateMe(payload: UpdateUserPayload) {
+  const { data } = await apiServer.patch<ApiResponse<User>>(
+    "/users/me",
+    payload,
+  );
+
+  return data;
 }
 
 export async function updateUser(userId: string, payload: UpdateUserPayload) {
-  try {
-    const { data } = await apiServer.patch<ApiResponse<User>>(
-      `/users/${userId}`,
-      payload,
-    );
+  const { data } = await apiServer.patch<ApiResponse<User>>(
+    `/users/${userId}`,
+    payload,
+  );
 
-    return data;
-  } catch (error) {
-    if (error instanceof AxiosError) {
-      throw new Error(
-        JSON.stringify({
-          status: error.response?.status,
-          data: error.response?.data,
-        }),
-      );
-    }
-
-    throw new Error("Unknown error");
-  }
+  return data;
 }
 
 export async function updateUserStatus(userId: string, status: string) {
-  try {
-    const { data } = await apiServer.post<ApiResponse<User>>(
-      `/users/${userId}/status/${status}`,
-    );
+  const { data } = await apiServer.post<ApiResponse<User>>(
+    `/users/${userId}/status/${status}`,
+  );
 
-    return data;
-  } catch (error) {
-    if (error instanceof AxiosError) {
-      throw new Error(
-        JSON.stringify({
-          status: error.response?.status,
-          data: error.response?.data,
-        }),
-      );
-    }
+  return data;
+}
 
-    throw new Error("Unknown error");
-  }
+export async function updateMyEmail(payload: UpdateMyEmailPayload) {
+  const { data } = await apiServer.put<ApiResponse<User>>(
+    "/users/me/email",
+    payload,
+  );
+
+  return data;
+}
+
+export async function updateMyPhone(payload: UpdateMyPhonePayload) {
+  const { data } = await apiServer.put<ApiResponse<User>>(
+    "/users/me/phone",
+    payload,
+  );
+
+  return data;
+}
+
+export async function updateMyPassword(payload: UpdateMyPasswordPayload) {
+  const { data } = await apiServer.put<ApiResponse<null>>(
+    "/users/me/password",
+    payload,
+  );
+
+  return data;
 }
 
 export async function promoteUser(userId: string) {
-  try {
-    const { data } = await apiServer.post<ApiResponse<User>>(
-      `/users/${userId}/promote`,
-    );
+  const { data } = await apiServer.post<ApiResponse<User>>(
+    `/users/${userId}/promote`,
+  );
 
-    return data;
-  } catch (error) {
-    if (error instanceof AxiosError) {
-      throw new Error(
-        JSON.stringify({
-          status: error.response?.status,
-          data: error.response?.data,
-        }),
-      );
-    }
-
-    throw new Error("Unknown error");
-  }
+  return data;
 }
 
 export async function demoteUser(userId: string) {
-  try {
-    const { data } = await apiServer.post<ApiResponse<User>>(
-      `/users/${userId}/demote`,
-    );
+  const { data } = await apiServer.post<ApiResponse<User>>(
+    `/users/${userId}/demote`,
+  );
 
-    return data;
-  } catch (error) {
-    if (error instanceof AxiosError) {
-      throw new Error(
-        JSON.stringify({
-          status: error.response?.status,
-          data: error.response?.data,
-        }),
-      );
-    }
-
-    throw new Error("Unknown error");
-  }
+  return data;
 }
 
 export async function deleteUser(userId: string) {
-  try {
-    const { data } = await apiServer.delete<ApiResponse<null>>(
-      `/users/${userId}`,
-    );
+  const { data } = await apiServer.delete<ApiResponse<null>>(
+    `/users/${userId}`,
+  );
 
-    return data;
-  } catch (error) {
-    if (error instanceof AxiosError) {
-      throw new Error(
-        JSON.stringify({
-          status: error.response?.status,
-          data: error.response?.data,
-        }),
-      );
-    }
-
-    throw new Error("Unknown error");
-  }
+  return data;
 }
 
 export async function bulkDeleteUsers(userIds: string[]) {
-  try {
-    const { data } = await apiServer.post<ApiResponse<null>>(
-      "/users/bulk-delete",
-      {
-        user_ids: userIds,
-      },
-    );
+  const { data } = await apiServer.post<ApiResponse<null>>(
+    "/users/bulk-delete",
+    {
+      user_ids: userIds,
+    },
+  );
 
-    return data;
-  } catch (error) {
-    if (error instanceof AxiosError) {
-      throw new Error(
-        JSON.stringify({
-          status: error.response?.status,
-          data: error.response?.data,
-        }),
-      );
-    }
-
-    throw new Error("Unknown error");
-  }
+  return data;
 }

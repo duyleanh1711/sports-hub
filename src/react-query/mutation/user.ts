@@ -5,15 +5,22 @@ import type {
   UserStatus,
   CreateUserPayload,
   UpdateUserPayload,
+  UpdateMyEmailPayload,
+  UpdateMyPhonePayload,
+  UpdateMyPasswordPayload,
 } from "@/types/user";
 import {
+  updateMe,
   createUser,
   deleteUser,
   demoteUser,
   updateUser,
   promoteUser,
+  updateMyEmail,
+  updateMyPhone,
   bulkDeleteUsers,
   updateUserStatus,
+  updateMyPassword,
 } from "@/actions/user";
 
 export function useCreateUser(
@@ -28,6 +35,27 @@ export function useCreateUser(
     onSuccess: () => {
       toast.success(tToast("toast.success"));
       queryClient.invalidateQueries({ queryKey: ["user", "list"] });
+      onSuccess?.();
+    },
+
+    onError: (error: any) => {
+      toast.error(error?.response?.data?.message || tToast("toast.error"));
+    },
+  });
+}
+
+export function useUpdateMe(
+  tToast: (key: string) => string,
+  onSuccess?: () => void,
+) {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (payload: UpdateUserPayload) => updateMe(payload),
+
+    onSuccess: () => {
+      toast.success(tToast("toast.success"));
+      queryClient.invalidateQueries({ queryKey: ["me"] });
       onSuccess?.();
     },
 
@@ -74,6 +102,69 @@ export function useUpdateUserStatus(tToast: (key: string) => string) {
     onSuccess: () => {
       toast.success(tToast("toast.success"));
       queryClient.invalidateQueries({ queryKey: ["user", "list"] });
+    },
+
+    onError: (error: any) => {
+      toast.error(error?.response?.data?.message || tToast("toast.error"));
+    },
+  });
+}
+
+export function useUpdateMyEmail(
+  tToast: (key: string) => string,
+  onSuccess?: () => void,
+) {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (payload: UpdateMyEmailPayload) => updateMyEmail(payload),
+
+    onSuccess: () => {
+      toast.success(tToast("toast.success"));
+      queryClient.invalidateQueries({ queryKey: ["user", "me"] });
+      onSuccess?.();
+    },
+
+    onError: (error: any) => {
+      toast.error(error?.response?.data?.message || tToast("toast.error"));
+    },
+  });
+}
+
+export function useUpdateMyPhone(
+  tToast: (key: string) => string,
+  onSuccess?: () => void,
+) {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (payload: UpdateMyPhonePayload) => updateMyPhone(payload),
+
+    onSuccess: () => {
+      toast.success(tToast("toast.success"));
+      queryClient.invalidateQueries({ queryKey: ["user", "me"] });
+      onSuccess?.();
+    },
+
+    onError: (error: any) => {
+      toast.error(error?.response?.data?.message || tToast("toast.error"));
+    },
+  });
+}
+
+export function useUpdateMyPassword(
+  tToast: (key: string) => string,
+  onSuccess?: () => void,
+) {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (payload: UpdateMyPasswordPayload) => updateMyPassword(payload),
+
+    onSuccess: () => {
+      toast.success(tToast("toast.success"));
+      queryClient.invalidateQueries({ queryKey: ["me"] });
+      onSuccess?.();
     },
 
     onError: (error: any) => {

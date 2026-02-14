@@ -1,5 +1,6 @@
 {
-  "button": {
-    "login": "Log in"
+  "header": {
+    "home": "Go to homepage",
+    "login": "Login"
   }
 }

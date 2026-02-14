@@ -42,10 +42,7 @@ const DialogHeader = ({ className, ...props }: DialogHeaderProps) => {
   return (
     <div
       data-slot="dialog-header"
-      className={twMerge(
-        "relative space-y-1 p-(--gutter) pb-[calc(var(--gutter)---spacing(3))]",
-        className,
-      )}
+      className={twMerge("relative space-y-1 p-(--gutter) pb-0", className)}
     >
       {props.title && <DialogTitle>{props.title}</DialogTitle>}
       {props.description && (

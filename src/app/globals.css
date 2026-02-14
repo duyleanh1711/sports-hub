@@ -198,6 +198,12 @@
     background-color: var(--bg);
     color: var(--fg);
   }
+  .grecaptcha-badge {
+    visibility: hidden;
+  }
+  input[data-input-otp="true"] {
+    width: 100% !important;
+  }
   ::-webkit-scrollbar {
     width: 4px;
   }
@@ -225,8 +231,4 @@
     min-width: 44px;
     z-index: 9999;
   }
-}
-
-.grecaptcha-badge {
-  visibility: hidden;
 }

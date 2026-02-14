@@ -23,7 +23,7 @@ export function SearchField({ className, ...props }: SearchFieldProps) {
 
 export function SearchInput(props: InputProps) {
   return (
-    <InputGroup className="[--input-gutter-end:--spacing(8)]">
+    <InputGroup className="w-full sm:w-auto [--input-gutter-end:--spacing(8)]">
       <MagnifyingGlassIcon className="in-disabled:opacity-50" />
       <Input {...props} />
     </InputGroup>

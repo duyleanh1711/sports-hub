@@ -1,0 +1,181 @@
+{
+  "breadcrumbs": {
+    "home": "Home",
+    "profile": "Profile",
+    "account": "Account settings",
+    "security": "Security",
+    "login-history": "Login history"
+  },
+
+  "sidebar": {
+    "heading": "Settings",
+    "profile": "Profile information",
+    "account": "Account settings",
+    "security": "Security",
+    "loginHistory": "Login history"
+  },
+
+  "account": {
+    "title": "Account Settings",
+
+    "fields": {
+      "fullname": "Full name",
+      "email": "Email",
+      "phone": "Phone number",
+      "country": "Country",
+      "province": "Province / City",
+      "ward": "Ward / Commune",
+      "address": "Address"
+    },
+
+    "placeholders": {
+      "fullname": "Enter your full name",
+      "country": "Select a country",
+      "searchCountry": "Search country...",
+      "province": "Select province / city",
+      "ward": "Select ward / commune",
+      "address": "Enter address"
+    },
+
+    "actions": {
+      "changeEmail": "Change email",
+      "changePhone": "Change phone"
+    },
+
+    "validation": {
+      "fullname": {
+        "required": "Full name is required"
+      }
+    },
+
+    "toast": {
+      "success": "Profile updated successfully",
+      "error": "Failed to update profile"
+    },
+
+    "save": "Save changes",
+    "saving": "Saving..."
+  },
+
+  "security": {
+    "changePassword": {
+      "title": "Change password",
+      "fields": {
+        "current": "Current password",
+        "new": "New password",
+        "confirm": "Confirm password"
+      },
+      "actions": {
+        "save": "Update password",
+        "saving": "Saving..."
+      },
+      "placeholders": {
+        "current": "Enter current password",
+        "new": "Enter new password",
+        "confirm": "Re-enter new password"
+      },
+      "validation": {
+        "current": {
+          "required": "Current password is required"
+        },
+        "new": {
+          "min": "Password must be at least 8 characters",
+          "max": "Password must not exceed 64 characters",
+          "lowercase": "Password must contain at least one lowercase letter",
+          "uppercase": "Password must contain at least one uppercase letter",
+          "number": "Password must contain at least one number",
+          "special": "Password must contain at least one special character",
+          "noSpace": "Password must not contain spaces",
+          "sameAsCurrent": "New password must be different from the current password"
+        },
+        "confirm": {
+          "required": "Please confirm your password",
+          "notMatch": "Passwords do not match"
+        }
+      },
+      "toast": {
+        "success": "Password updated successfully",
+        "error": "Failed to update password",
+        "incorrectCurrent": "Current password is incorrect"
+      }
+    }
+  },
+
+  "modals": {
+    "changeEmail": {
+      "title": "Change email",
+      "description": "Update your email address. You may need to verify the new email.",
+      "otpDescription": "A verification code has been sent to <highlight>{email}</highlight>.",
+      "fields": {
+        "email": "Email",
+        "otp": "Verification code"
+      },
+      "placeholders": {
+        "email": "Enter new email",
+        "otp": "Enter verification code"
+      },
+      "actions": {
+        "cancel": "Cancel",
+        "save": "Save changes",
+        "sendOtp": "Send code",
+        "verify": "Verify",
+        "resendOtp": "Resend code",
+        "resendOtpCountdown": "Resend in {seconds}s",
+        "back": "Back"
+      },
+      "validation": {
+        "email": {
+          "required": "Email is required",
+          "invalid": "Invalid email address"
+        },
+        "otp": {
+          "required": "Verification code is required",
+          "invalid": "Invalid verification code"
+        }
+      },
+      "toast": {
+        "success": "Email updated successfully",
+        "error": "Failed to update email"
+      }
+    },
+
+    "changePhone": {
+      "title": "Change phone number",
+      "description": "Update your phone number. You may need to verify the new number.",
+      "otpDescription": "A verification code has been sent to <highlight>{phone}</highlight>.",
+      "fields": {
+        "phone": "Phone number",
+        "otp": "Verification code"
+      },
+      "placeholders": {
+        "phone": "Enter new phone number",
+        "otp": "Enter verification code",
+        "country": "Country",
+        "searchCountry": "Search country"
+      },
+      "actions": {
+        "cancel": "Cancel",
+        "save": "Save changes",
+        "sendOtp": "Send code",
+        "verify": "Verify",
+        "resendOtp": "Resend code",
+        "resendOtpCountdown": "Resend in {seconds}s",
+        "back": "Back"
+      },
+      "validation": {
+        "phone": {
+          "required": "Phone number is required",
+          "invalid": "Invalid phone number"
+        },
+        "otp": {
+          "required": "Verification code is required",
+          "invalid": "Invalid verification code"
+        }
+      },
+      "toast": {
+        "success": "Phone number updated successfully",
+        "error": "Failed to update phone number"
+      }
+    }
+  }
+}

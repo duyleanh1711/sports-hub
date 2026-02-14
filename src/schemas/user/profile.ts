@@ -1,8 +1,10 @@
 import { z } from "zod";
 
-export const updateUserSchema = (t: (key: string) => string) =>
+export const profileSchema = (t: (key: string) => string) =>
   z.object({
     fullname: z.string().min(1, t("validation.fullname.required")),
+
+    phone: z.string().optional().nullable(),
 
     country_code: z.string().nullable().optional(),
 
@@ -11,8 +13,6 @@ export const updateUserSchema = (t: (key: string) => string) =>
     ward: z.string().nullable().optional(),
 
     address: z.string().nullable().optional(),
-
-    locale: z.enum(["en-US", "vi-VN"]).optional(),
   });
 
-export type UpdateUserFormValues = z.input<ReturnType<typeof updateUserSchema>>;
+export type ProfileFormValues = z.infer<ReturnType<typeof profileSchema>>;
